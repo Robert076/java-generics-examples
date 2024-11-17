@@ -14,4 +14,8 @@ public class Dog implements Animal {
         return "Dog is eating.";
     }
 
+    public String toString() {
+        return "DogToString";
+    }
+
 }

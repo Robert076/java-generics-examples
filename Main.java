@@ -15,6 +15,14 @@ public class Main {
         System.out.println(a.shout());
     }
 
+    static <T> void printer(T a) {
+        System.out.println(a);
+    }
+
+    static <T extends Animal> void printer2(T a) {
+        System.out.println(a);
+    }
+
     public static void main(String[] args) {
         System.out.println("Hello world!");
         ArrayList<Dog> dogs = new ArrayList<>();
@@ -28,13 +36,17 @@ public class Main {
         // our list
         // all we know is that there will be something that is below the Animal in the
         // hierarchy
-        // if we have a simple type not a list or whatever we do not need to add for
-        // example:
-        // func(T extends Animal). This is wrong. we just add (Animal a) and the
-        // compiler
-        // will know that there can be anything that implements Animal. in this case
-        // dogs or cats
         howShout(dogs);
         howShoutOnce(new Cat());
+
+        printer(new Dog()); // WORKS
+        printer(new Cat()); // WORKS
+        printer(new String("Test")); // WORKS
+
+        // Now change static <T> void printer(T a) and make <T extends Animal> instead
+        // lets make a new function printer2 like this
+        printer2(new Dog()); // WORKS
+        printer2(new Cat()); // WORKS
+        // printer2(new String("test")); // COMPILE ERROR
     }
 }
